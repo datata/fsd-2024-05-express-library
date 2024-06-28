@@ -1,4 +1,6 @@
 import express from 'express';
+import { createAuthor, deleteUserById, updateAuthorById } from './controllers/author.controller';
+import { createBook, deleteBookById, getAllBooks, updateBookById } from './controllers/book.controller';
 
 const app = express();
 
@@ -12,42 +14,16 @@ app.get('/healthy', (req, res) => {
 })
 
 //  AUTHORS
-app.post('/authors', (req, res) => {
-  // recuperar la informacion de la req
-  console.log(req.body);
-  console.log(req.body.name);
-  console.log(req.body.nationality);
-
-  res.send('CREATE AUTHOR')
-})
-
+app.post('/authors', createAuthor)
 // rutas dinamincas usamos req params
-app.put('/authors/:id', (req, res) => {
-  console.log(req.params.id);
-  
-  res.send(`AUTHOR UPDATED with id: ${req.params.id}`)
-})
-
-app.delete('/authors/:id', (req, res) => {
-  res.send(`AUTHOR DELETED BY ID ${req.params.id}`)
-})
+app.put('/authors/:id', updateAuthorById)
+app.delete('/authors/:id', deleteUserById)
 
 // BOOKS
-app.get('/books', (req, res) => {
-  res.send('GET ALL BOOKS')
-})
-
-app.post('/books', (req, res) => {
-  res.send('BOOK created')
-})
-
-app.put('/books', (req, res) => {
-  res.send('BOOK UPDATED')
-})
-
-app.delete('/books', (req, res) => {
-  res.send('book deleted')
-})
+app.get('/books', getAllBooks)
+app.post('/books', createBook)
+app.put('/books', updateBookById)
+app.delete('/books', deleteBookById)
 
 
 app.listen(PORT, () => {
