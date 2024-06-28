@@ -22,5 +22,14 @@ $ npm i typescript -D
 $ npx tsc
 ```
 
+``` sh
+$ npm i nodemon -D
+```
+
+``` sh
+$ npm i ts-node -D
+```
+
+
 
 
