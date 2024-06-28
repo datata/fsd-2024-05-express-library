@@ -6,7 +6,12 @@ export const createAuthor = (req: Request, res: Response) => {
   console.log(req.body.name);
   console.log(req.body.nationality);
 
-  res.send('CREATE AUTHOR')
+  res.json(
+    {
+      success: true,
+      message: 'CREATE AUTHOR'
+    }
+  )
 }
 
 export const updateAuthorById = (req: Request, res: Response) => {
