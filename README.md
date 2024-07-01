@@ -30,6 +30,10 @@ $ npm i nodemon -D
 $ npm i ts-node -D
 ```
 
+``` sh
+$ npm i dotenv
+```
+
 
 
 
