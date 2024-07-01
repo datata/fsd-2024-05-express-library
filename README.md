@@ -1,39 +1,41 @@
-``` sh
+```sh
 $ git init
 ```
 
-``` sh
+```sh
 $ npm init
 ```
 
-``` sh
+```sh
 $ npm i express
 ```
 
-``` sh
+```sh
 $ npm i --save-dev @types/express
 ```
 
-``` sh
+```sh
 $ npm i typescript -D
 ```
 
-``` sh
+```sh
 $ npx tsc
 ```
 
-``` sh
+```sh
 $ npm i nodemon -D
 ```
 
-``` sh
+```sh
 $ npm i ts-node -D
 ```
 
-``` sh
+```sh
 $ npm i dotenv
 ```
 
+## conexion a db
 
-
-
+```sh
+$ npm i typeorm
+```

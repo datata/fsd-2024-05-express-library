@@ -2,6 +2,7 @@ import 'dotenv/config';
 import express from 'express';
 import { createAuthor, deleteUserById, updateAuthorById } from './controllers/author.controller';
 import { createBook, deleteBookById, getAllBooks, updateBookById } from './controllers/book.controller';
+import { AppDataSource } from './database/db';
 
 const app = express();
 
@@ -33,9 +34,15 @@ app.post('/books', createBook)
 app.put('/books', updateBookById)
 app.delete('/books', deleteBookById)
 
-
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`)
-})
+AppDataSource.initialize()
+  .then(() => {
+    console.log('Database connected');
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`)
+    })
+  })
+  .catch(error => {
+    console.log(error)
+  })
 
 
