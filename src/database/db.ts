@@ -1,5 +1,7 @@
 import "reflect-metadata";
+import 'dotenv/config';
 import { DataSource } from "typeorm";
+import { Author1719825025988 } from "./migrations/1719825025988-author";
 
 export const AppDataSource = new DataSource({
 	type: "mysql",
@@ -9,6 +11,7 @@ export const AppDataSource = new DataSource({
 	password: process.env.DB_PASSWORD,
 	database: process.env.DB_DATABASE,
 	entities: [],
+	migrations: [Author1719825025988],
 	synchronize: false,
 	logging: false,
 });

@@ -39,3 +39,8 @@ $ npm i dotenv
 ```sh
 $ npm i typeorm
 ```
+
+### ejemplo migracion
+```sh
+npx typeorm migration:create ./src/database/migrations/user
+```
