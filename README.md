@@ -44,3 +44,5 @@ $ npm i typeorm
 ```sh
 npx typeorm migration:create ./src/database/migrations/user
 ```
+
+## ejemplo readme
