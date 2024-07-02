@@ -79,10 +79,41 @@ export const getAllAuthors = async(req: Request, res: Response) => {
   }
 }
 
-export const updateAuthorById = (req: Request, res: Response) => {
-  console.log(req.params.id);
+export const updateAuthorById = async (req: Request, res: Response) => {
+  try {
+      // 1. Recupera la info
+      const authorIdToUpdate = req.params.id
+      const body = req.body
 
-  res.send(`AUTHOR UPDATED with id: ${req.params.id}`)
+      // 2. validar la info
+
+      // 3. trata la info
+
+      // 4. Actualizar en bd
+      const authorUpdated = await Author.update(
+        {
+          id: parseInt(authorIdToUpdate)
+        },
+        body
+      )
+
+      // 5. Responder
+      res.status(200).json(
+        {
+          success: true,
+          message: "Auhtor updated",
+          data: authorUpdated
+        }
+      )      
+  } catch (error) {
+    res.status(500).json(
+      {
+        success: false,
+        message: "author cant be updated",
+        error: error
+      }
+    )
+  }
 }
 
 export const deleteAuthorById = async (req: Request, res: Response) => {
