@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import express from 'express';
-import { createAuthor, deleteUserById, updateAuthorById } from './controllers/author.controller';
+import { createAuthor, deleteUserById, getAllAuthors, updateAuthorById } from './controllers/author.controller';
 import { createBook, deleteBookById, getAllBooks, updateBookById } from './controllers/book.controller';
 import { AppDataSource } from './database/db';
 
@@ -27,6 +27,7 @@ app.post('/authors', createAuthor)
 // rutas dinamincas usamos req params
 app.put('/authors/:id', updateAuthorById)
 app.delete('/authors/:id', deleteUserById)
+app.get('/authors', getAllAuthors)
 
 // BOOKS
 app.get('/books', getAllBooks)
