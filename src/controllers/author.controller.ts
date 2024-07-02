@@ -85,6 +85,38 @@ export const updateAuthorById = (req: Request, res: Response) => {
   res.send(`AUTHOR UPDATED with id: ${req.params.id}`)
 }
 
-export const deleteUserById = (req: Request, res: Response) => {
-  res.send(`AUTHOR DELETED BY ID ${req.params.id}`)
+export const deleteAuthorById = async (req: Request, res: Response) => {
+  try {
+    // 1. recupera id
+    const authorIdToDelete = Number(req.params.id)
+  
+    // 2. Eliminar registro de la bd
+    const authorDeleted = await Author.delete(authorIdToDelete)
+
+    if(!authorDeleted.affected) {
+      return res.status(404).json(
+        {
+          success: false,
+          message: "Author doesnt exist"
+        }
+      )
+    } 
+
+    // 3. Responder
+    res.status(200).json(
+      {
+        success: true,
+        message: "author deleted successfully",
+        data: authorDeleted
+      }
+    )
+  } catch (error) {
+    res.status(500).json(
+      {
+        success: false,
+        message: "Error deleting author",
+        error: error
+      }
+    )
+  }
 }
