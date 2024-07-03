@@ -18,6 +18,7 @@ export class User1719830260277 implements MigrationInterface {
                         name: "name",
                         type: "varchar",
                         length: "255",
+                        isNullable: true
                     },
                     {
                         name: "email",
@@ -50,7 +51,7 @@ export class User1719830260277 implements MigrationInterface {
                         default: "now()"
                     },
                     {
-                        name: "updted_at",
+                        name: "updated_at",
                         type: "datetime",
                         default: "now()",
                         onUpdate: "now()"

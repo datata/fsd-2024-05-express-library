@@ -45,4 +45,12 @@ $ npm i typeorm
 npx typeorm migration:create ./src/database/migrations/user
 ```
 
+### encriptar contraseña
+```sh
+npm i bcrypt
+```
+``` sh
+npm i --save-dev @types/bcrypt
+```
+
 ## ejemplo readme
