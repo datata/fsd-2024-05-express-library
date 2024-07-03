@@ -56,6 +56,24 @@ export const deleteBookById = (req: Request, res: Response) => {
   res.send('Book deleted')
 }
 
-export const getAllBooks = (req: Request, res: Response) => {
-  res.send('GET ALL BOOKS')
+export const getAllBooks = async(req: Request, res: Response) => {
+ try {
+   // 1.Recuperar los libros
+   const books = await Book.find()
+
+   res.json(
+    {
+      success: true,
+      message: "Books retrieved",
+      data: books
+    }
+   )
+ } catch (error) {
+    res.status(500).json(
+      {
+        success: false,
+        message: "error retrieving books"
+      }
+    )
+ }
 }
