@@ -9,7 +9,7 @@ export const register = async (req: Request, res: Response) => {
     const password = req.body.password
 
     // 2. validar la info
-    if(!email || !password) {
+    if (!email || !password) {
       return res.json(400).json(
         {
           success: false,
@@ -20,7 +20,7 @@ export const register = async (req: Request, res: Response) => {
 
     // TODO validar formato email
 
-    if(password.length < 8  || password.length > 12) {
+    if (password.length < 8 || password.length > 12) {
       return res.status(400).json(
         {
           success: false,
@@ -61,5 +61,66 @@ export const register = async (req: Request, res: Response) => {
         error: error
       }
     )
+  }
+}
+
+export const login = async (req: Request, res: Response) => {
+  try {
+    // 1. recuperar info
+    // const email = req.body.email;
+    // const password = req.body.password;
+
+    const { email, password } = req.body
+
+    // 2. validar info
+    if (!email || !password) {
+      return res.status(400).json(
+        {
+          success: false,
+          message: "Email and password are needed"
+        }
+      )
+    }
+
+    // 3. Comprobar si el usuario existe 
+    const user = await User.findOne(
+      {
+        where: { email: email }
+      }
+    )
+
+    if (!user) {
+      return res.status(400).json(
+        {
+          success: false,
+          message: "Email or password not valid"
+        }
+      )
+    }
+
+    // 4. Comprobar la contraseña 
+    const isPasswordValid = bcrypt.compareSync(password, user.password)
+    
+    if(!isPasswordValid) {
+      return res.status(400).json(
+        {
+          success: false,
+          message: "Email or password not valid"
+        }
+      )
+    }
+
+    res.status(200).json(
+      {
+        success: true,
+        message: "User logged"
+      }
+    )
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "user cant be logged",
+      error: error
+    })
   }
 }
