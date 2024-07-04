@@ -1,4 +1,5 @@
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 import { Request, Response } from "express";
 import { User } from "../database/models/User";
 
@@ -110,10 +111,24 @@ export const login = async (req: Request, res: Response) => {
       )
     }
 
+    // 5. creacionn del token
+    const token = jwt.sign(
+      {
+        id: user.id,
+        role: user.role,
+        email: user.email
+      },
+      'secreto',
+      {
+        expiresIn: "2h"
+      }
+    )
+
     res.status(200).json(
       {
         success: true,
-        message: "User logged"
+        message: "User logged",
+        token: token
       }
     )
   } catch (error) {
