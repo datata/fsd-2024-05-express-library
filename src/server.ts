@@ -6,6 +6,7 @@ import { AppDataSource } from './database/db';
 import { login, register } from './controllers/auth.controller';
 import { getAllUsers, getUserProfile } from './controllers/user.controller';
 import { auth } from './middlewares/auth';
+import { isAdmin } from './middlewares/isAdmin';
 
 const app = express();
 
@@ -43,7 +44,7 @@ app.post('/register', register)
 app.post('/login', login)
 
 // USER
-app.get('/users', getAllUsers)
+app.get('/users', auth, isAdmin, getAllUsers)
 app.get('/profile', auth, getUserProfile)
 
 AppDataSource.initialize()
