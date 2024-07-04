@@ -4,7 +4,7 @@ import { createAuthor, deleteAuthorById, getAllAuthors, updateAuthorById } from 
 import { createBook, deleteBookById, getAllBooks, updateBookById } from './controllers/book.controller';
 import { AppDataSource } from './database/db';
 import { login, register } from './controllers/auth.controller';
-import { getAllUsers } from './controllers/user.controller';
+import { getAllUsers, getUserProfile } from './controllers/user.controller';
 import { auth } from './middlewares/auth';
 
 const app = express();
@@ -44,6 +44,7 @@ app.post('/login', login)
 
 // USER
 app.get('/users', getAllUsers)
+app.get('/profile', auth, getUserProfile)
 
 AppDataSource.initialize()
   .then(() => {

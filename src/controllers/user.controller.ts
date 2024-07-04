@@ -33,3 +33,35 @@ export const getAllUsers = async(req: Request, res: Response) => {
     )
   }
 }
+
+export const getUserProfile = async(req: Request, res: Response) => {
+  try {
+    // 1. Recuperar id del usuario a traves del token
+    const userId = req.tokenData.id;
+
+    // 2. Buscarlo en bd
+    const user = await User.findOne(
+      {
+        where: {
+          id: userId
+        }
+      }
+    ) 
+
+    // 3. Responder
+    res.json(
+      {
+        success: true,
+        message: "User profile retrieved",
+        data: user
+      }
+    )
+  } catch (error) {
+    res.status(500).json(
+      {
+        success: false,
+        message: "Profile cant be retrieved"
+      }
+    )
+  }
+}
