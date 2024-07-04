@@ -5,6 +5,7 @@ import { createBook, deleteBookById, getAllBooks, updateBookById } from './contr
 import { AppDataSource } from './database/db';
 import { login, register } from './controllers/auth.controller';
 import { getAllUsers } from './controllers/user.controller';
+import { auth } from './middlewares/auth';
 
 const app = express();
 
@@ -25,10 +26,10 @@ app.get('/healthy', (req, res) => {
 })
 
 //  AUTHORS
-app.post('/authors', createAuthor)
+app.post('/authors', auth, createAuthor)
 // rutas dinamincas usamos req params
-app.put('/authors/:id', updateAuthorById)
-app.delete('/authors/:id', deleteAuthorById)
+app.put('/authors/:id', auth, updateAuthorById)
+app.delete('/authors/:id', auth, deleteAuthorById)
 app.get('/authors', getAllAuthors)
 
 // BOOKS
