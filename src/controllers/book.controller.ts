@@ -9,7 +9,7 @@ export const createBook = async (req: Request, res: Response) => {
     const authorId = req.body.authorId
 
     // 2. Validar la info
-    if( !title || !description || !authorId) {
+    if (!title || !description || !authorId) {
       return res.status(400).json(
         {
           success: false,
@@ -56,24 +56,24 @@ export const deleteBookById = (req: Request, res: Response) => {
   res.send('Book deleted')
 }
 
-export const getAllBooks = async(req: Request, res: Response) => {
- try {
-   // 1.Recuperar los libros
-   const books = await Book.find()
+export const getAllBooks = async (req: Request, res: Response) => {
+  try {
+    // 1.Recuperar los libros
+    const books = await Book.find()
 
-   res.json(
-    {
-      success: true,
-      message: "Books retrieved",
-      data: books
-    }
-   )
- } catch (error) {
+    res.json(
+      {
+        success: true,
+        message: "Books retrieved",
+        data: books
+      }
+    )
+  } catch (error) {
     res.status(500).json(
       {
         success: false,
         message: "error retrieving books"
       }
     )
- }
+  }
 }

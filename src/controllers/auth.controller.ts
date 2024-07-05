@@ -46,6 +46,8 @@ export const register = async (req: Request, res: Response) => {
       // }
     ).save()
 
+    // 4.5 Send welcome email to user
+
     // 5. responder
     res.status(201).json(
       {

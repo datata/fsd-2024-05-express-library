@@ -27,7 +27,8 @@ export const auth = (req: Request, res: Response, next: NextFunction) => {
     res.status(500).json(
       {
         success: false,
-        message: "Error authenticadd"
+        message: "Error authenticadd",
+        error: error
       }
     )
   }
