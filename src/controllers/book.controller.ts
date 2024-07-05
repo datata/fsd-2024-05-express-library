@@ -59,7 +59,23 @@ export const deleteBookById = (req: Request, res: Response) => {
 export const getAllBooks = async (req: Request, res: Response) => {
   try {
     // 1.Recuperar los libros
-    const books = await Book.find()
+    const books = await Book.find(
+      {
+        select: {
+          id: true,
+          title: true,
+          description: true,
+          author: {
+            id: true,
+            name: true,
+            nationality: true
+          }
+        },
+        relations: {
+          author: true
+        }
+      }
+    )
 
     res.json(
       {
@@ -72,7 +88,8 @@ export const getAllBooks = async (req: Request, res: Response) => {
     res.status(500).json(
       {
         success: false,
-        message: "error retrieving books"
+        message: "error retrieving books",
+        error: error
       }
     )
   }
