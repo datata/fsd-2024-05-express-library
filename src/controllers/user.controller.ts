@@ -72,11 +72,26 @@ export const getUserFavoritesBooks = async (req: Request, res: Response) => {
     const userId = req.tokenData.id
 
     const userFavouriteBooks = await User.findOne({
+      select: {
+        id: true,
+        email: true,
+        favourite_books: {
+          id: true,
+          book: {
+            id: true,
+            title: true
+          }
+        }
+      },
       where: {
         id: userId
       },
       relations: {
-        favourite_books: true
+        favourite_books: {
+          book: {
+            author: true
+          }
+        }
       }
     })
 
