@@ -57,7 +57,16 @@ export const createAuthor = async (req: Request, res: Response) => {
 export const getAllAuthors = async(req: Request, res: Response) => {
   try {
     // 1. Recuperar la info de la BD
-    const authors = await Author.find()
+    // paginacion
+    const limit = Number(req.query.limit) > 100 ?  5 : Number(req.query.limit)
+    const page = Number(req.query.page) || 1
+
+    const authors = await Author.find(
+      {
+        skip: (page - 1) * limit,
+        take: limit
+      }
+    )
 
     // 2. Responder la info de la bd
     res.json(
