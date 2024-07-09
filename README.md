@@ -54,3 +54,7 @@ npm i --save-dev @types/bcrypt
 ```
 
 ## ejemplo readme
+
+``` sh
+npm run db:refresh
+```
