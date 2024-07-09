@@ -58,3 +58,8 @@ npm i --save-dev @types/bcrypt
 ``` sh
 npm run db:refresh
 ```
+
+## cambio de nombre de commit
+``` sh
+$ git commit --amend
+```
