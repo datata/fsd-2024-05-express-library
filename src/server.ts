@@ -8,7 +8,12 @@ import { getAllUsers, getUserFavoritesBooks, getUserProfile } from './controller
 import { auth } from './middlewares/auth';
 import { isAdmin } from './middlewares/isAdmin';
 
+import cors from "cors";
+
 const app = express();
+
+// cors
+app.use(cors())
 
 // middleware
 app.use(express.json())

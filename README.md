@@ -63,3 +63,17 @@ npm run db:refresh
 ``` sh
 $ git commit --amend
 ```
+
+
+## install cors
+``` sh
+$ npm i cors
+$ npm i --save-dev @types/cors
+```
+
+
+``` js
+import cors from 'cors'
+
+app.use(cors())
+```
